@@ -24,7 +24,9 @@
                             {{ blogPost.getUpdatedAt|date('F j, Y') }} by
 
                             {% if blogPost.author %}
-                                {{ blogPost.author.name }}
+                                <a href="{{ path('author', {'name': blogPost.author.username|url_encode }) }}">
+                                    {{ blogPost.author.name }}
+                                </a>
                             {% else %}
                                 Unknown Author
                             {% endif %}
