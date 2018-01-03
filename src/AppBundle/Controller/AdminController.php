@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Author;
 use AppBundle\Form\AuthorFormType;
 
+@Route("/admin");
 class AdminController extends Controller
 {
     /** @var EntityManagerInterface */
