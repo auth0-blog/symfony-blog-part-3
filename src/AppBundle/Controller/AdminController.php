@@ -11,7 +11,9 @@ use AppBundle\Form\AuthorFormType;
 use AppBundle\Entity\BlogPost;
 use AppBundle\Form\EntryFormType;
 
-@Route("/admin");
+/**
+ * @Route("/admin")
+ */
 class AdminController extends Controller
 {
     /** @var EntityManagerInterface */

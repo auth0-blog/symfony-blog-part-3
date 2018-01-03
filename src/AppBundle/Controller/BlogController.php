@@ -5,9 +5,13 @@ namespace AppBundle\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class BlogController extends Controller
 {
+    /** @var integer */
+    const POST_LIMIT = 5;
+
     /** @var EntityManagerInterface */
     private $entityManager;
 
@@ -31,10 +35,19 @@ class BlogController extends Controller
      * @Route("/", name="homepage")
      * @Route("/entries", name="entries")
      */
-    public function entriesAction()
+    public function entriesAction(Request $request)
     {
+        $page = 1;
+
+        if ($request->get('page')) {
+            $page = $request->get('page');
+        }
+
         return $this->render('AppBundle:Blog:entries.html.twig', [
-            'blogPosts' => $this->blogPostRepository->findAll()
+            'blogPosts' => $this->blogPostRepository->getAllPosts($page, self::POST_LIMIT),
+            'totalBlogPosts' => $this->blogPostRepository->getPostCount(),
+            'page' => $page,
+            'entryLimit' => self::POST_LIMIT
         ]);
     }
 
