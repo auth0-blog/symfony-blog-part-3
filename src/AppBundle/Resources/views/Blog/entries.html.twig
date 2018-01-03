@@ -16,7 +16,9 @@
                     {% set firstParagraph = paragraphs|first ~ '</p>' %}
                     <div class="blog-post">
                         <h2 class="blog-post-title">
-                            {{ blogPost.title }}
+                            <a href="{{ path('entry', {'slug': blogPost.slug}) }}">
+                                {{ blogPost.title }}
+                            </a>
                         </h2>
                         <p class="blog-post-meta">
                             {{ blogPost.getUpdatedAt|date('F j, Y') }} by
@@ -28,6 +30,7 @@
                             {% endif %}
                         </p>
                         {{ firstParagraph|raw }}<br />
+                        <a href="{{ path('entry', {'slug': blogPost.slug}) }}">Read more</a>
                     </div>
                 {% else %}
                     <div class="alert alert-danger" role="alert">

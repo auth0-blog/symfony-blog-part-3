@@ -52,12 +52,20 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/entry{slug}")
+     * @Route("/entry/{slug}", name="entry")
      */
     public function entryAction($slug)
     {
+        $blogPost = $this->blogPostRepository->findOneBySlug($slug);
+
+        if (!$blogPost) {
+            $this->addFlash('error', 'Unable to find entry!');
+
+            return $this->redirectToRoute('entries');
+        }
+
         return $this->render('AppBundle:Blog:entry.html.twig', array(
-            // ...
+            'blogPost' => $blogPost
         ));
     }
 
