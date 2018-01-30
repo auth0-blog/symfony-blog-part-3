@@ -20,3 +20,15 @@ monolog:
         console:
             type: console
             process_psr_3_messages: false
+
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        dbname: '%env(DATABASE_NAME)%'
+        url: '%env(CLEARDB_DATABASE_URL)%'
+        charset: UTF8
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
