@@ -13,7 +13,7 @@
         "psr-4": { "Tests\\": "tests/" },
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
         "php": ">=5.5.9",
@@ -52,6 +52,9 @@
         ],
         "post-update-cmd": [
             "@symfony-scripts"
+        ],
+        "compile": [
+            "php bin/console doctrine:schema:update --force"
         ]
     },
     "config": {
