@@ -18,8 +18,7 @@ install:
 - composer install
 - php bin/console doctrine:database:create --env=test
 - php bin/console doctrine:schema:create --env=test
-- php bin/console doctrine:fixtures:load -n --env=test
-notifications: 
+notifications:
 email: bruno.krebs@auth0.com
 deploy:
   provider: heroku
